@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: Arial, sans-serif;
+}
+
+#ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    padding: 10px;
+    max-width: 260px;
+}
+
+button {
+    width: 100%;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+#pos {
+    font-size: 12px;
+    margin-top: 8px;
+}
+#labels {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.sat-label {
+    position: absolute;
+    color: white;
+    font-size: 11px;
+    background: rgba(0,0,0,0.65);
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    white-space: nowrap;
+}
