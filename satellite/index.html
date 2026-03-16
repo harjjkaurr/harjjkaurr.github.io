@@ -3,32 +3,27 @@
 <head>
 <meta charset="UTF-8" />
 <title>3D Satellite Tracker</title>
-
 <link rel="stylesheet" href="style.css" />
 
-<!-- REQUIRED import map for Three.js ES modules -->
 <script type="importmap">
 {
   "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.157.0/examples/jsm/"
+    "three":             "https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js",
+    "three/addons/":     "https://cdn.jsdelivr.net/npm/three@0.157.0/examples/jsm/",
+    "satellite":         "https://cdn.jsdelivr.net/npm/satellite.js@4.1.4/dist/satellite.es.js"
   }
 }
 </script>
 </head>
 
 <body>
-
 <div id="ui">
-  <h3>Satellites</h3>
+  <h3>🛰 Live Satellites</h3>
   <div id="sat-toggles"></div>
 </div>
 
 <div id="labels"></div>
 
-<!-- Three.js module -->
 <script type="module" src="script.js"></script>
-
 </body>
-
 </html>
