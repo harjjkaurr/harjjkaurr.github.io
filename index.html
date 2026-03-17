@@ -209,6 +209,54 @@
       animation: pulse 2s infinite;
     }
 
+    /* tooltip shown when hovering over Kosmosliebhaberin */
+    .badge-word {
+      position: relative;
+      cursor: default;
+    }
+
+    .badge-word::after {
+      content: 'Lover of the Cosmos';
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--accent);
+      color: #ffffff;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      padding: 6px 14px;
+      border-radius: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    /* small downward pointing arrow under tooltip */
+    .badge-word::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--accent);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .badge-word:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .badge-word:hover::before {
+      opacity: 1;
+    }
+
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50%       { opacity: 0.4; transform: scale(0.7); }
@@ -1122,7 +1170,7 @@
       <div>
         <div class="hero-badge">
           <span class="dot"></span>
-          Selenophile
+          <span class="badge-word">Kosmosliebhaberin</span>
         </div>
 
         <h1 class="hero-name">
@@ -1151,7 +1199,7 @@
       <div class="hero-visual">
         <div class="satellite-embed-label">
           <span class="dot"></span>
-          Live 3D Satellite Orbit Tracker
+          Live Project — 3D Satellite Orbit Tracker
         </div>
 
         <iframe
@@ -1163,7 +1211,7 @@
         ></iframe>
 
         <a href="satellite/index.html" target="_blank" class="satellite-open-btn">
-          View in New Tab ↗
+          View in Full Screen ↗
         </a>
       </div>
 
@@ -1618,8 +1666,8 @@
         </p>
 
         <div class="contact-links">
-          <a href="mailto:kaur.harjot.1621@gmail.com" class="contact-link">
-            <span class="icon">✉</span> hkaur33@asu.edu
+          <a href="/cdn-cgi/l/email-protection#264d475354084e47544c4952081710141766414b474f4a0845494b" class="contact-link">
+            <span class="icon">✉</span> <span class="__cf_email__" data-cfemail="2f47444e5a5d1c1c6f4e5c5a014a4b5a">[email&#160;protected]</span>
           </a>
           <a href="https://www.linkedin.com/in/harjottkaurr/" target="_blank" class="contact-link">
             <span class="icon">🔗</span> LinkedIn
@@ -1643,7 +1691,7 @@
   <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
     /* ── Custom cursor ── */
     const cursor = document.getElementById('cursor');
@@ -1731,15 +1779,3 @@
     const observer = new IntersectionObserver(entries => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(r => observer.observe(r));
-
-  </script>
-
-</body>
-</html>
