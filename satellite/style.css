@@ -25,7 +25,7 @@ body {
 }
 
 .exp-photo {
-  width: 190px;
+  width: 50%;
   height: 120px;
   object-fit: cover;
   border-radius: 20px;
