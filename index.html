@@ -12,22 +12,22 @@
   <style>
 
     /* ============================================================
-       COLOR VARIABLES — black, white, and gray scheme
+       COLOR VARIABLES — edit all your colors here in one place
     ============================================================ */
     :root {
-      --bg:           #0a0a0a;       /* near-black main background      */
-      --bg2:          #111111;       /* slightly lighter alternate bg   */
-      --surface:      #1a1a1a;       /* card background                 */
-      --surface2:     #222222;       /* card background variant         */
-      --accent:       #ffffff;       /* white — main accent             */
-      --accent2:      #cccccc;       /* light gray — secondary          */
-      --accent3:      #888888;       /* mid gray — third accent         */
-      --text:         #ffffff;       /* primary text — white            */
-      --text-muted:   #aaaaaa;       /* body text — light gray          */
-      --text-dim:     #555555;       /* subtle text — dark gray         */
-      --border:       rgba(255, 255, 255, 0.12);
-      --border2:      rgba(255, 255, 255, 0.07);
-      --glow:         rgba(255, 255, 255, 0.06);
+      --bg:           #ffffff;
+      --bg2:          #fdf6f0;
+      --surface:      #fff8f3;
+      --surface2:     #fdeee3;
+      --accent:       #8b4513;
+      --accent2:      #a0522d;
+      --accent3:      #cd853f;
+      --text:         #2b1200;
+      --text-muted:   #5c3317;
+      --text-dim:     #b07850;
+      --border:       rgba(139, 69, 19, 0.25);
+      --border2:      rgba(139, 69, 19, 0.18);
+      --glow:         rgba(139, 69, 19, 0.12);
     }
 
 
@@ -40,7 +40,9 @@
       padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -57,10 +59,11 @@
     .cursor {
       width: 10px;
       height: 10px;
-      background: #ffffff;
+      background: var(--text);
       border-radius: 50%;
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
       z-index: 9999;
     }
@@ -68,13 +71,14 @@
     .cursor-ring {
       width: 36px;
       height: 36px;
-      border: 1.5px solid #ffffff;
+      border: 1.5px solid var(--text);
       border-radius: 50%;
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
       z-index: 9998;
-      opacity: 0.4;
+      opacity: 0.5;
       transition: all 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
@@ -95,15 +99,17 @@
     ============================================================ */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
       padding: 20px 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+      background: rgba(255, 250, 245, 0.92);
     }
 
     .nav-logo {
@@ -111,7 +117,7 @@
       font-weight: 800;
       font-size: 1.1rem;
       letter-spacing: 0.08em;
-      color: #ffffff;
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -132,19 +138,29 @@
       position: relative;
     }
 
+    /* underline animation on hover */
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: #ffffff;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
       transition: width 0.3s;
     }
 
-    .nav-links a:hover { color: #ffffff; }
+    .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
 
-    section { position: relative; z-index: 1; }
+
+    /* ============================================================
+       SHARED
+    ============================================================ */
+    section {
+      position: relative;
+      z-index: 1;
+    }
 
 
     /* ============================================================
@@ -157,7 +173,7 @@
       padding: 120px 60px 80px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(135deg, #0a0a0a 60%, #1a1a1a 100%);
+      background: linear-gradient(135deg, #ffffff 60%, #fdeee3 100%);
     }
 
     .hero-grid {
@@ -175,39 +191,42 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(139, 69, 19, 0.08);
+      border: 1px solid rgba(139, 69, 19, 0.25);
       border-radius: 100px;
       padding: 6px 16px;
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      color: #cccccc;
+      color: var(--accent);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 24px;
     }
 
+    /* pulsing dot inside badge */
     .hero-badge .dot {
-      width: 6px; height: 6px;
-      background: #ffffff;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
 
-    /* Kosmosliebhaberin tooltip */
+    /* ── Kosmosliebhaberin tooltip ── */
     .badge-word {
       position: relative;
       cursor: default;
     }
 
+    /* "Lover of the Cosmos" tooltip — hidden by default */
     .badge-word::after {
       content: 'Lover of the Cosmos';
       position: absolute;
       bottom: calc(100% + 10px);
       left: 50%;
       transform: translateX(-50%) translateY(4px);
-      background: #ffffff;
-      color: #000000;
+      background: var(--accent);
+      color: #ffffff;
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
       letter-spacing: 0.08em;
@@ -220,6 +239,7 @@
       z-index: 200;
     }
 
+    /* small downward arrow under tooltip */
     .badge-word::before {
       content: '';
       position: absolute;
@@ -227,36 +247,43 @@
       left: 50%;
       transform: translateX(-50%);
       border: 5px solid transparent;
-      border-top-color: #ffffff;
+      border-top-color: var(--accent);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
       z-index: 200;
     }
 
-    .badge-word:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .badge-word:hover::before { opacity: 1; }
+    .badge-word:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .badge-word:hover::before {
+      opacity: 1;
+    }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.3; transform: scale(0.7); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
     }
 
+    /* large name heading */
     .hero-name {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: clamp(2.8rem, 5vw, 4.5rem);
       line-height: 1.0;
       letter-spacing: -0.02em;
-      color: #ffffff;
+      color: var(--accent);
       margin-bottom: 8px;
     }
 
-    /* "Kaur" — outlined stroke */
+    /* "Kaur" outlined stroke */
     .hero-name .accent-line {
       display: block;
       color: transparent;
-      -webkit-text-stroke: 1.5px #ffffff;
+      -webkit-text-stroke: 1.5px var(--accent);
     }
 
     .hero-title {
@@ -277,19 +304,23 @@
     }
 
     .hero-summary strong {
-      color: #ffffff;
+      color: var(--text);
       font-weight: 600;
     }
 
-    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-    /* solid white button */
+    /* solid saddle brown button */
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #ffffff;
-      color: #000000;
+      background: var(--accent);
+      color: #ffffff;
       padding: 14px 28px;
       border-radius: 4px;
       font-family: 'Syne', sans-serif;
@@ -302,9 +333,9 @@
     }
 
     .btn-primary:hover {
-      background: #cccccc;
+      background: #a0522d;
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(139, 69, 19, 0.25);
     }
 
     /* outline button */
@@ -312,8 +343,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      border: 1.5px solid rgba(255, 255, 255, 0.35);
-      color: #ffffff;
+      border: 1.5px solid rgba(139, 69, 19, 0.4);
+      color: var(--accent);
       padding: 14px 28px;
       border-radius: 4px;
       font-family: 'Syne', sans-serif;
@@ -326,13 +357,13 @@
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(139, 69, 19, 0.08);
       transform: translateY(-2px);
     }
 
 
     /* ============================================================
-       SATELLITE TRACKER EMBED (hero right)
+       SATELLITE TRACKER EMBED
     ============================================================ */
     .hero-visual {
       position: relative;
@@ -348,14 +379,15 @@
       gap: 8px;
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      color: var(--accent2);
+      color: var(--accent);
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
     .satellite-embed-label .dot {
-      width: 6px; height: 6px;
-      background: #ffffff;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
@@ -365,7 +397,7 @@
       height: 400px;
       border: 1px solid var(--border);
       border-radius: 12px;
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 8px 40px rgba(139, 69, 19, 0.12);
       background: #000;
     }
 
@@ -373,17 +405,17 @@
       align-self: flex-end;
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      color: var(--accent2);
+      color: var(--accent);
       text-decoration: none;
       letter-spacing: 0.08em;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      border-bottom: 1px solid rgba(139, 69, 19, 0.3);
       padding-bottom: 2px;
       transition: all 0.2s;
     }
 
     .satellite-open-btn:hover {
-      color: #ffffff;
-      border-bottom-color: #ffffff;
+      color: var(--accent2);
+      border-bottom-color: var(--accent2);
     }
 
 
@@ -403,182 +435,89 @@
       margin-bottom: 60px;
     }
 
-    /* section tag pill — white on black */
+    /* e.g. "01 — Education" brown pill */
     .section-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
-      color: #000000;
+      color: #ffffff;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 700;
-      background-color: #ffffff;
+      background-color: #8b4513;
       padding: 4px 12px;
       border-radius: 4px;
       white-space: nowrap;
     }
 
+    /* horizontal line after section tag */
     .section-line {
       flex: 1;
       height: 1px;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent);
-    }
-
-
-    /* ============================================================
-       HIGHLIGHTS STRIP — sits between hero and education
-    ============================================================ */
-    #highlights {
-      background: var(--bg);
-      position: relative;
-      z-index: 1;
-    }
-
-    .highlights-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 60px 60px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .highlight-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px 24px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
-    }
-
-    .highlight-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 80px; height: 80px;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .highlight-card:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
-    }
-
-    .highlight-icon {
-      font-size: 1.6rem;
-      margin-bottom: 14px;
-      line-height: 1;
-    }
-
-    .highlight-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--text-dim);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .highlight-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      color: #ffffff;
-      line-height: 1.2;
-      margin-bottom: 5px;
-    }
-
-    .highlight-sub {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-      line-height: 1.4;
-    }
-
-    .highlight-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .htag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      padding: 3px 8px;
-      letter-spacing: 0.04em;
-    }
-
-    @media (max-width: 900px) {
-      .highlights-inner { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 540px) {
-      .highlights-inner { grid-template-columns: 1fr; padding: 40px 24px; }
+      background: linear-gradient(to right, rgba(139, 69, 19, 0.3), transparent);
     }
 
 
     /* ============================================================
        EDUCATION SECTION
     ============================================================ */
-    #education { background: var(--bg2); }
+    #education {
+      background: var(--bg2);
+    }
 
     .edu-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border: 1px solid rgba(139, 69, 19, 0.2);
       border-radius: 16px;
       padding: 40px 48px;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 40px;
       align-items: center;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 30px rgba(139, 69, 19, 0.07);
     }
 
     .edu-degree {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 1.5rem;
-      color: #ffffff;
+      color: var(--text);
       margin-bottom: 8px;
     }
 
     .edu-school {
       font-family: 'DM Mono', monospace;
       font-size: 0.82rem;
-      color: var(--accent2);
+      color: var(--accent);
       letter-spacing: 0.1em;
       margin-bottom: 20px;
     }
 
-    .edu-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .edu-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
     .edu-chip {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
       color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(139, 69, 19, 0.06);
+      border: 1px solid rgba(139, 69, 19, 0.18);
       border-radius: 4px;
       padding: 4px 10px;
       letter-spacing: 0.05em;
     }
 
-    .edu-grad { text-align: right; }
+    .edu-grad {
+      text-align: right;
+    }
 
     .edu-grad-date {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 2.4rem;
-      color: #ffffff;
+      color: var(--text);
       line-height: 1;
     }
 
@@ -595,34 +534,38 @@
     /* ============================================================
        EXPERIENCE SECTION
     ============================================================ */
-    #experience { background: var(--bg); }
+    #experience {
+      background: var(--bg);
+    }
 
     .exp-card {
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 36px 40px;
-      background: var(--surface);
+      background: #ffffff;
       position: relative;
-      overflow: visible;
+      overflow: visible;   /* ← change from hidden to visible */
       transition: all 0.3s ease;
       margin-bottom: 24px;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 20px rgba(139, 69, 19, 0.06);
     }
 
-    /* left white accent stripe */
+    /* left accent stripe */
     .exp-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: linear-gradient(to bottom, #ffffff, #555555);
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent), var(--accent3));
       border-radius: 3px 0 0 3px;
     }
 
     .exp-card:hover {
-      border-color: rgba(255, 255, 255, 0.25);
+      border-color: rgba(139, 69, 19, 0.35);
       transform: translateX(4px);
-      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 40px rgba(139, 69, 19, 0.1);
     }
 
     .exp-meta {
@@ -638,30 +581,33 @@
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1.2rem;
-      color: #ffffff;
+      color: var(--text);
     }
 
     .exp-role {
       font-family: 'DM Mono', monospace;
       font-size: 0.78rem;
-      color: var(--accent2);
+      color: var(--accent);
       letter-spacing: 0.08em;
       margin-top: 4px;
     }
 
+    /* date pill */
     .exp-period {
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      color: var(--accent2);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--accent);
+      background: rgba(139, 69, 19, 0.07);
+      border: 1px solid rgba(139, 69, 19, 0.2);
       padding: 5px 12px;
       border-radius: 100px;
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    .exp-points { list-style: none; }
+    .exp-points {
+      list-style: none;
+    }
 
     .exp-points li {
       position: relative;
@@ -672,23 +618,27 @@
       line-height: 1.65;
     }
 
+    /* brown arrow bullet */
     .exp-points li::before {
       content: '▸';
       position: absolute;
       left: 0;
-      color: #ffffff;
+      color: var(--accent);
       font-size: 0.8rem;
     }
 
-    .exp-points li strong { color: #ffffff; font-weight: 600; }
+    .exp-points li strong {
+      color: var(--text);
+      font-weight: 600;
+    }
 
-    /* photo — no zoom on hover */
-    .exp-photo-wrapper {
+    /* photo inside experience card */
+      .exp-photo-wrapper {
       margin-top: 28px;
       display: flex;
       align-items: center;
       gap: 16px;
-      overflow: visible;
+      overflow: visible;   /* ← add this line */
     }
 
     .exp-photo {
@@ -698,9 +648,20 @@
       object-fit: cover;
       object-position: center;
       border-radius: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(139, 69, 19, 0.2);
+      box-shadow: 0 4px 16px rgba(139, 69, 19, 0.12);
       flex-shrink: 0;
+      cursor: zoom-in;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+    }
+    
+    .exp-photo:hover {
+      transform: scale(2.2);
+      box-shadow: 0 16px 48px rgba(139, 69, 19, 0.28);
+      border-color: rgba(139, 69, 19, 0.5);
+      z-index: 10;
     }
 
     .exp-photo-caption {
@@ -713,9 +674,13 @@
 
 
     /* ============================================================
-       RESEARCH SECTION — INTERACTIVE CLICK-TO-EXPAND
+       RESEARCH SECTION — INTERACTIVE CLICK-TO-EXPAND CARDS
+       Default: shows emoji, title, tag, role, date
+       On click: description smoothly expands below
     ============================================================ */
-    #research { background: var(--bg2); }
+    #research {
+      background: var(--bg2);
+    }
 
     .research-grid {
       display: grid;
@@ -723,8 +688,9 @@
       gap: 24px;
     }
 
+    /* card is clickable */
     .research-card {
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border2);
       border-radius: 12px;
       padding: 30px;
@@ -732,34 +698,40 @@
       overflow: hidden;
       cursor: pointer;
       transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 16px rgba(139, 69, 19, 0.05);
     }
 
+    /* subtle corner glow */
     .research-card::after {
       content: '';
       position: absolute;
-      top: 0; right: 0;
-      width: 140px; height: 140px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+      top: 0;
+      right: 0;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(139, 69, 19, 0.04) 0%, transparent 70%);
       pointer-events: none;
     }
 
     .research-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(139, 69, 19, 0.3);
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 16px 40px rgba(139, 69, 19, 0.1);
     }
 
+    /* card stays flat when open so description reads cleanly */
     .research-card.open {
-      border-color: rgba(255, 255, 255, 0.28);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      border-color: rgba(139, 69, 19, 0.4);
+      box-shadow: 0 12px 40px rgba(139, 69, 19, 0.12);
       transform: translateY(0);
     }
 
+    /* emoji icon box */
     .research-icon {
-      width: 44px; height: 44px;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      width: 44px;
+      height: 44px;
+      background: rgba(139, 69, 19, 0.08);
+      border: 1px solid rgba(139, 69, 19, 0.2);
       border-radius: 10px;
       display: flex;
       align-items: center;
@@ -768,15 +740,16 @@
       margin-bottom: 20px;
     }
 
+    /* affiliation capsule e.g. "NASA · RASC-AL" */
     .research-tag {
       display: inline-block;
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
-      color: var(--accent2);
+      color: var(--accent);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(139, 69, 19, 0.07);
+      border: 1px solid rgba(139, 69, 19, 0.2);
       border-radius: 100px;
       padding: 3px 10px;
       margin-bottom: 14px;
@@ -786,7 +759,7 @@
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1.05rem;
-      color: #ffffff;
+      color: var(--text);
       line-height: 1.4;
       margin-bottom: 8px;
     }
@@ -803,11 +776,12 @@
     .research-org {
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      color: var(--accent3);
+      color: var(--accent2);
       letter-spacing: 0.08em;
       margin-bottom: 0;
     }
 
+    /* "▸ Click to read more" hint */
     .research-hint {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
@@ -820,15 +794,23 @@
       transition: color 0.2s;
     }
 
+    /* arrow before hint text */
     .research-hint::before {
       content: '▸';
       font-size: 0.6rem;
       transition: transform 0.3s ease;
     }
 
-    .research-card.open .research-hint::before { transform: rotate(90deg); }
-    .research-card.open .research-hint { color: #ffffff; }
+    /* arrow rotates 90° when card is open */
+    .research-card.open .research-hint::before {
+      transform: rotate(90deg);
+    }
 
+    .research-card.open .research-hint {
+      color: var(--accent);
+    }
+
+    /* description — collapsed by default */
     .research-desc {
       font-size: 0.88rem;
       line-height: 1.7;
@@ -840,19 +822,26 @@
       transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.3s ease;
     }
 
+    /* description expands when card has .open class */
     .research-card.open .research-desc {
       max-height: 600px;
       opacity: 1;
       margin-top: 16px;
     }
 
-    .research-desc strong { color: #ffffff; font-weight: 600; }
+    .research-desc strong {
+      color: var(--text);
+      font-weight: 600;
+    }
 
 
     /* ============================================================
-       SKILLS SECTION — no hover color change
+       SKILLS SECTION
+       Hover color change removed — tags are static
     ============================================================ */
-    #skills { background: var(--bg); }
+    #skills {
+      background: var(--bg);
+    }
 
     .skills-layout {
       display: grid;
@@ -861,23 +850,23 @@
     }
 
     .skill-group {
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 28px;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 16px rgba(139, 69, 19, 0.05);
     }
 
     .skill-group:hover {
-      border-color: rgba(255, 255, 255, 0.22);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(139, 69, 19, 0.35);
+      box-shadow: 0 8px 30px rgba(139, 69, 19, 0.1);
     }
 
     .skill-group-title {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
-      color: #ffffff;
+      color: var(--text);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 18px;
@@ -888,18 +877,24 @@
 
     .skill-group-title::before {
       content: '';
-      width: 18px; height: 1px;
-      background: #ffffff;
+      width: 18px;
+      height: 1px;
+      background: var(--accent);
     }
 
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
+    /* skill pill — NO hover color change */
     .skill-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
       color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(139, 69, 19, 0.05);
+      border: 1px solid rgba(139, 69, 19, 0.15);
       border-radius: 4px;
       padding: 5px 11px;
       letter-spacing: 0.05em;
@@ -909,7 +904,9 @@
     /* ============================================================
        PROJECTS SECTION
     ============================================================ */
-    #projects { background: var(--bg2); }
+    #projects {
+      background: var(--bg2);
+    }
 
     .projects-grid {
       display: grid;
@@ -918,29 +915,31 @@
     }
 
     .project-card {
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 32px;
       position: relative;
       overflow: hidden;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 16px rgba(139, 69, 19, 0.05);
     }
 
     .project-card:hover {
-      border-color: rgba(255, 255, 255, 0.22);
+      border-color: rgba(139, 69, 19, 0.35);
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 16px 40px rgba(139, 69, 19, 0.1);
     }
 
+    /* large faded number in corner */
     .project-num {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
       font-size: 3rem;
-      color: rgba(255, 255, 255, 0.05);
+      color: rgba(139, 69, 19, 0.07);
       position: absolute;
-      top: 16px; right: 24px;
+      top: 16px;
+      right: 24px;
       line-height: 1;
     }
 
@@ -948,7 +947,7 @@
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
-      color: #ffffff;
+      color: var(--text);
       margin-bottom: 12px;
       line-height: 1.3;
     }
@@ -956,7 +955,7 @@
     .project-period {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
-      color: var(--accent3);
+      color: var(--accent2);
       letter-spacing: 0.1em;
       margin-bottom: 14px;
     }
@@ -971,7 +970,9 @@
     /* ============================================================
        LEADERSHIP SECTION
     ============================================================ */
-    #leadership { background: var(--bg); }
+    #leadership {
+      background: var(--bg);
+    }
 
     .leadership-list {
       display: flex;
@@ -985,14 +986,15 @@
       gap: 24px;
       align-items: start;
       padding: 24px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(139, 69, 19, 0.1);
     }
 
+    /* vertical brown gradient line on left */
     .lead-line {
       width: 3px;
       height: 100%;
       min-height: 40px;
-      background: linear-gradient(to bottom, #ffffff, transparent);
+      background: linear-gradient(to bottom, var(--accent), transparent);
       border-radius: 3px;
     }
 
@@ -1000,14 +1002,14 @@
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 1rem;
-      color: #ffffff;
+      color: var(--text);
       margin-bottom: 4px;
     }
 
     .lead-org {
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
-      color: var(--accent2);
+      color: var(--accent);
       letter-spacing: 0.08em;
       margin-bottom: 12px;
     }
@@ -1018,6 +1020,7 @@
       line-height: 1.65;
     }
 
+    /* date on the right */
     .lead-period {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
@@ -1050,12 +1053,12 @@
       line-height: 1.1;
       letter-spacing: -0.02em;
       margin-bottom: 20px;
-      color: #ffffff;
+      color: var(--accent);
     }
 
     .contact-heading .stroke {
       color: transparent;
-      -webkit-text-stroke: 1.5px #ffffff;
+      -webkit-text-stroke: 1.5px var(--accent);
     }
 
     .contact-sub {
@@ -1076,7 +1079,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 16px 26px;
@@ -1086,18 +1089,20 @@
       font-size: 0.8rem;
       letter-spacing: 0.08em;
       transition: all 0.25s;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 12px rgba(139, 69, 19, 0.06);
     }
 
     .contact-link:hover {
-      color: #000000;
-      background: #ffffff;
-      border-color: #ffffff;
+      color: #ffffff;
+      background: var(--accent);
+      border-color: var(--accent);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 24px rgba(139, 69, 19, 0.2);
     }
 
-    .contact-link .icon { font-size: 1.1rem; }
+    .contact-link .icon {
+      font-size: 1.1rem;
+    }
 
 
     /* ============================================================
@@ -1107,7 +1112,7 @@
       position: relative;
       z-index: 1;
       padding: 30px 60px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(139, 69, 19, 0.12);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1121,11 +1126,13 @@
       letter-spacing: 0.1em;
     }
 
-    footer .footer-accent { color: #ffffff; }
+    footer .footer-accent {
+      color: var(--accent);
+    }
 
 
     /* ============================================================
-       SCROLL REVEAL
+       SCROLL REVEAL ANIMATION
     ============================================================ */
     .reveal {
       opacity: 0;
@@ -1144,7 +1151,7 @@
     ============================================================ */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: rgba(139, 69, 19, 0.3); border-radius: 2px; }
 
 
     /* ============================================================
@@ -1193,9 +1200,11 @@
   <section id="hero">
     <div class="hero-grid">
 
+      <!-- Left: text content -->
       <div>
         <div class="hero-badge">
           <span class="dot"></span>
+          <!-- Hover over to see translation -->
           <span class="badge-word">Kosmosliebhaberin</span>
         </div>
 
@@ -1234,75 +1243,11 @@
           title="Real-Time 3D Satellite Orbit Tracking System"
           loading="lazy"
           scrolling="no"
-          allow="accelerometer; camera; encrypted-media; fullscreen; gyroscope"
-          sandbox="allow-scripts allow-same-origin allow-forms"
         ></iframe>
 
         <a href="satellite/index.html" target="_blank" class="satellite-open-btn">
           View in New Screen ↗
         </a>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ============================================================
-       HIGHLIGHTS STRIP
-  ============================================================ -->
-  <section id="highlights">
-    <div class="highlights-inner">
-
-      <!-- Industry -->
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🏢</div>
-        <div class="highlight-label">Industry</div>
-        <div class="highlight-title">Collins Aerospace · RTX</div>
-        <div class="highlight-sub">Systems / Software Engineering Intern</div>
-        <div class="highlight-tags">
-          <span class="htag">DO-178B</span>
-          <span class="htag">FMS Software</span>
-          <span class="htag">3× Internships</span>
-        </div>
-      </div>
-
-      <!-- Research -->
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🔬</div>
-        <div class="highlight-label">Research</div>
-        <div class="highlight-title">6 Projects</div>
-        <div class="highlight-sub">NASA · Honeywell · ASU</div>
-        <div class="highlight-tags">
-          <span class="htag">Aeroacoustics</span>
-          <span class="htag">Lunar Rover</span>
-          <span class="htag">Systems Eng.</span>
-        </div>
-      </div>
-
-      <!-- Personal Projects -->
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">💻</div>
-        <div class="highlight-label">Personal Projects</div>
-        <div class="highlight-title">2 Live Systems</div>
-        <div class="highlight-sub">Built & Deployed</div>
-        <div class="highlight-tags">
-          <span class="htag">SGP4 Tracking</span>
-          <span class="htag">FDIR Logic</span>
-          <span class="htag">Python / JS</span>
-        </div>
-      </div>
-
-      <!-- Leadership -->
-      <div class="highlight-card reveal">
-        <div class="highlight-icon">🌟</div>
-        <div class="highlight-label">Leadership & Outreach</div>
-        <div class="highlight-title">15,000+ Students</div>
-        <div class="highlight-sub">Mentored & Guided</div>
-        <div class="highlight-tags">
-          <span class="htag">TA · FSE 100</span>
-          <span class="htag">SPARKS</span>
-          <span class="htag">Gold Guide</span>
-        </div>
       </div>
 
     </div>
@@ -1408,7 +1353,9 @@
 
 
   <!-- ============================================================
-       RESEARCH — click cards to expand
+       RESEARCH
+       Click any card to expand the full description.
+       Click again to collapse.
   ============================================================ -->
   <section id="research">
     <div class="section-inner">
@@ -1420,6 +1367,7 @@
 
       <div class="research-grid">
 
+        <!-- Card 1: NASA RASC-AL -->
         <div class="research-card reveal" onclick="toggleCard(this)">
           <div class="research-icon">🛰️</div>
           <span class="research-tag">NASA · RASC-AL</span>
@@ -1430,7 +1378,7 @@
           <div class="research-desc">
             Led the rover structural design, subsystem integration, and communication
             architecture to enable reliable telemetry and mission operations for a lunar
-            surface sampling rover developed for a <strong>NASA RASC-AL</strong> mission concept.
+            surface sampling rover developed for a </strong>NASA RASC-AL</strong> mission concept.
             Developed the <strong>Lunar Isolation Sample Container (LISC)</strong>, a
             concept for lunar sample preservation featuring a dual-wall aluminum structure,
             vacuum insulation, and thermal interfaces designed to maintain volatile stability
@@ -1440,6 +1388,7 @@
           </div>
         </div>
 
+        <!-- Card 2: Honeywell -->
         <div class="research-card reveal" onclick="toggleCard(this)">
           <div class="research-icon">🔊</div>
           <span class="research-tag">Honeywell Aerospace</span>
@@ -1452,12 +1401,13 @@
             Power Unit (APU) noise mitigation, exploring both active and passive acoustic
             technologies for liner optimization. Performed preliminary frequency-domain
             analysis and source identification to characterize key APU noise contributors,
-            and collaborated with Honeywell engineers to investigate suitable material
+            and collaborated with </strong>Honeywell engineers</strong> to investigate suitable material
             selections and liner geometry configurations aimed at improving acoustic
             absorption and overall APU noise reduction performance.
           </div>
         </div>
 
+        <!-- Card 3: Cube Sounder -->
         <div class="research-card reveal" onclick="toggleCard(this)">
           <div class="research-icon">📡</div>
           <span class="research-tag">ASU · Systems Engineering</span>
@@ -1476,6 +1426,7 @@
           </div>
         </div>
 
+        <!-- Card 4: Space Works II -->
         <div class="research-card reveal" onclick="toggleCard(this)">
           <div class="research-icon">📷</div>
           <span class="research-tag">ASU · Space Works II</span>
@@ -1491,10 +1442,12 @@
             the housing and integration components, ensuring manufacturability and precise
             subsystem interfaces. Coordinated subsystem testing and electrical assembly,
             including soldering and hardware integration, to verify operational integrity
-            and successfully delivered both PDR and CDR documentation.
+            and successfully delivered both Preliminary Design Review (PDR) and Critical
+            Design Review (CDR) documentation.
           </div>
         </div>
 
+        <!-- Card 5: Space Works I -->
         <div class="research-card reveal" onclick="toggleCard(this)">
           <div class="research-icon">🚀</div>
           <span class="research-tag">ASU · Space Works I</span>
@@ -1507,13 +1460,15 @@
             while ensuring tolerance to impact forces under varying landing conditions.
             Served as Safety Engineer and Assembly, Test, and Launch Operations Lead,
             overseeing procedures to maintain system safety, reliability, and mission
-            readiness. Conducted analytical assessments to determine appropriate mass,
+            readiness. Conducted analytical assessments to determine the appropriate mass,
             volume, and dimensional parameters required for a stable and successful landing
             profile, and performed pre-launch tests and simulations to validate the
-            lander's functional performance and structural integrity.
+            lander's functional performance and structural integrity prior to mission
+            deployment.
           </div>
         </div>
 
+        <!-- Card 6: EPICS -->
         <div class="research-card reveal" onclick="toggleCard(this)">
           <div class="research-icon">🌱</div>
           <span class="research-tag">ASU · EPICS</span>
@@ -1776,7 +1731,9 @@
   ============================================================ -->
   <script>
 
-    /* ── Custom cursor ── */
+    /* ── Custom cursor ──
+       Using left/top instead of transform to avoid conflicts
+    ── */
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('cursorRing');
     let mx = -100, my = -100, rx = -100, ry = -100;
@@ -1797,16 +1754,21 @@
     }
     animCursor();
 
+    /* ring grows slightly when hovering links */
     document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.opacity = '0.8'; });
-      el.addEventListener('mouseleave', () => { ring.style.opacity = '0.4'; });
+      el.addEventListener('mouseenter', () => { ring.style.opacity = '0.9'; });
+      el.addEventListener('mouseleave', () => { ring.style.opacity = '0.5'; });
     });
 
 
-    /* ── Research card toggle ── */
+    /* ── Research card toggle ──
+       Clicking adds/removes the "open" class.
+       CSS handles the smooth expand/collapse animation.
+    ── */
     function toggleCard(card) {
       const isOpen = card.classList.contains('open');
       const hint   = card.querySelector('.research-hint');
+
       if (isOpen) {
         card.classList.remove('open');
         hint.textContent = 'Click to read more';
@@ -1829,11 +1791,12 @@
     resize();
     window.addEventListener('resize', resize);
 
-    for (let i = 0; i < 220; i++) {
+    /* create 180 random stars */
+    for (let i = 0; i < 180; i++) {
       stars.push({
         x:     Math.random() * 2000,
         y:     Math.random() * 1200,
-        r:     Math.random() * 1.4 + 0.2,
+        r:     Math.random() * 1.2 + 0.2,
         a:     Math.random(),
         speed: Math.random() * 0.3 + 0.05
       });
@@ -1843,10 +1806,10 @@
       ctx.clearRect(0, 0, W, H);
       stars.forEach(s => {
         s.a += s.speed * 0.005;
-        const opacity = (Math.sin(s.a) + 1) / 2 * 0.55 + 0.05;
+        const opacity = (Math.sin(s.a) + 1) / 2 * 0.18 + 0.03;
         ctx.beginPath();
         ctx.arc(s.x % W, s.y % H, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fillStyle = `rgba(139, 69, 19, ${opacity})`;
         ctx.fill();
       });
       requestAnimationFrame(drawStars);
