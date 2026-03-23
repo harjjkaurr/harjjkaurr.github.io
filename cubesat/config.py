@@ -2,8 +2,8 @@
 # CubeSat Mission Configuration
 # ──────────────────────────────────────────────
 
-SATELLITE_NAME = "AETHER-1"
-MISSION_ID = "AX-2024-001"
+SATELLITE_NAME = "28ZENITH"
+MISSION_ID = "ZX-2026-002"
 ORBIT_ALTITUDE_KM = 550
 
 # ── Power Subsystem ──────────────────────────
